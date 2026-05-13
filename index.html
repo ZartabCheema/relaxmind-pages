@@ -1,1 +1,230 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RelaxMind</title>
+  <meta name="description" content="RelaxMind — Calm your mind, improve focus, and relax with guided mindfulness." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b, #0f766e);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 10%;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      margin-left: 24px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .hero {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 80px 10%;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      max-width: 560px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #d1fae5;
+    }
+
+    h1 {
+      font-size: 64px;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      border-radius: 14px;
+      border: none;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #0f172a;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .card {
+      width: 320px;
+      padding: 28px;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    }
+
+    .card h3 {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .feature span {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #34d399;
+      display: inline-block;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 44px;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      header {
+        padding: 20px 6%;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">RelaxMind</div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <div class="badge">Mindfulness • Focus • Better Sleep</div>
+      <h1>Find Calm in a Busy World.</h1>
+      <p>
+        RelaxMind helps you relax, meditate, focus, and sleep better with calming sounds, breathing exercises, and mindfulness sessions.
+      </p>
+
+      <div class="buttons">
+        <a class="btn btn-primary" href="#">Download App</a>
+        <a class="btn btn-secondary" href="mailto:support@relaxmind.me">Contact Support</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Why RelaxMind?</h3>
+
+      <div class="feature">
+        <span></span>
+        Guided meditation sessions
+      </div>
+
+      <div class="feature">
+        <span></span>
+        Deep focus ambient sounds
+      </div>
+
+      <div class="feature">
+        <span></span>
+        Breathing & relaxation exercises
+      </div>
+
+      <div class="feature">
+        <span></span>
+        Sleep & stress management
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 RelaxMind • All Rights Reserved
+  </footer>
+</body>
+</html>
