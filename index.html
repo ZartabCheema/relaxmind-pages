@@ -1,230 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RelaxMind</title>
-  <meta name="description" content="RelaxMind — Calm your mind, improve focus, and relax with guided mindfulness." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>RelaxMind — Your Mindfulness Companion</title>
+<meta name="description" content="Guided meditations, science-backed breathing, sleep sounds and mood tracking. RelaxMind is the iOS app that helps you beat stress and find lasting calm."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#3A5BF0;--blue2:#5B7FFF;--violet:#7B5EA7;
+  --pink:#FF5C8A;--orange:#FF8C42;--teal:#00C9A7;--green:#22C55E;
+  --bg:#080C1A;--surface:#0F1326;--card:#141830;
+  --border:rgba(255,255,255,0.07);--text:#EEF0FF;--muted:#7880A4;
+  --grad:linear-gradient(135deg,#3A5BF0,#7B5EA7);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b, #0f766e);
-      color: white;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+/* ─── NAV ─── */
+nav{position:fixed;inset:0 0 auto;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2.5rem;background:rgba(8,12,26,.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.logo img{width:36px;height:36px;border-radius:9px}
+.logo-name{font-family:'Sora',sans-serif;font-weight:700;font-size:1.1rem;color:#fff}
+.nav-dl{padding:.55rem 1.6rem;background:var(--grad);border-radius:50px;color:#fff;font-weight:600;font-size:.88rem;text-decoration:none;transition:opacity .2s,transform .2s}
+.nav-dl:hover{opacity:.88;transform:translateY(-1px)}
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 10%;
-    }
+/* ─── HERO ─── */
+#hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2.5rem 4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 60% -10%,rgba(58,91,240,.22),transparent 65%),radial-gradient(ellipse 60% 50% at 10% 110%,rgba(123,94,167,.18),transparent 60%),var(--bg)}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;z-index:2;width:100%}
+.pill{display:inline-flex;align-items:center;gap:.45rem;padding:.38rem 1.1rem;background:rgba(58,91,240,.14);border:1px solid rgba(91,127,255,.35);border-radius:50px;font-size:.78rem;font-weight:600;letter-spacing:.07em;color:var(--blue2);margin-bottom:1.4rem}
+h1{font-family:'Sora',sans-serif;font-size:clamp(2rem,4.2vw,3.5rem);font-weight:800;line-height:1.1;color:#fff;margin-bottom:1.1rem}
+h1 .grad{background:linear-gradient(90deg,var(--blue2),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{color:var(--muted);font-size:1.02rem;line-height:1.75;max-width:460px;margin-bottom:2rem}
+.dl-btn{display:inline-flex;align-items:center;gap:.7rem;padding:.95rem 2rem;background:var(--grad);border-radius:14px;color:#fff;font-weight:700;font-size:.97rem;text-decoration:none;box-shadow:0 8px 28px rgba(58,91,240,.4);transition:transform .25s,box-shadow .25s}
+.dl-btn:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(58,91,240,.52)}
+.dl-btn svg{width:20px;height:20px;flex-shrink:0}
+.hero-phones{display:flex;gap:1.2rem;justify-content:center;align-items:flex-end}
+.hero-phones img{border-radius:32px;box-shadow:0 28px 70px rgba(0,0,0,.65)}
+.hp1{width:200px;animation:fl 5s ease-in-out infinite}
+.hp2{width:200px;animation:fl 5s ease-in-out infinite;animation-delay:-2.5s;margin-bottom:2rem}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
 
-    .logo {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
+/* ─── MARQUEE ─── */
+#marquee{background:var(--surface);padding:3.5rem 0;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.marquee-track{display:flex;gap:1.2rem;width:max-content;animation:scroll 38s linear infinite}
+.marquee-track img{width:145px;border-radius:22px;box-shadow:0 12px 40px rgba(0,0,0,.5);flex-shrink:0}
+#marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    nav a {
-      color: rgba(255,255,255,0.8);
-      text-decoration: none;
-      margin-left: 24px;
-      transition: 0.3s;
-    }
+/* ─── SECTIONS ─── */
+section{padding:6rem 2.5rem}
+.container{max-width:1120px;margin:0 auto}
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue2);margin-bottom:.7rem}
+h2{font-family:'Sora',sans-serif;font-size:clamp(1.7rem,3.2vw,2.5rem);font-weight:800;color:#fff;line-height:1.18;margin-bottom:.8rem}
+.sub{color:var(--muted);font-size:.98rem;line-height:1.72;max-width:500px}
 
-    nav a:hover {
-      color: white;
-    }
+/* ─── FEATURES GRID ─── */
+#features{background:var(--bg)}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:1.3rem;margin-top:3rem}
+.fc{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.8rem;transition:transform .3s,border-color .3s}
+.fc:hover{transform:translateY(-5px);border-color:rgba(91,127,255,.4)}
+.fi{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.1rem}
+.fi.b{background:rgba(58,91,240,.18)}.fi.t{background:rgba(0,201,167,.18)}.fi.p{background:rgba(255,92,138,.18)}.fi.o{background:rgba(255,140,66,.18)}.fi.v{background:rgba(123,94,167,.18)}.fi.g{background:rgba(34,197,94,.18)}
+.fc h3{font-size:1rem;font-weight:600;color:#fff;margin-bottom:.45rem}
+.fc p{font-size:.88rem;color:var(--muted);line-height:1.6}
 
-    .hero {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 80px 10%;
-      gap: 60px;
-      flex-wrap: wrap;
-    }
+/* ─── SPOTLIGHT ─── */
+.spotlight{background:var(--surface)}
+.spotlight:nth-child(even){background:var(--bg)}
+.sp-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.sp-grid.flip{direction:rtl}.sp-grid.flip>*{direction:ltr}
+.sp-text .tag{display:inline-block;padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:.06em;margin-bottom:1.2rem}
+.tag.blue{background:rgba(58,91,240,.18);color:var(--blue2)}
+.tag.teal{background:rgba(0,201,167,.18);color:var(--teal)}
+.tag.pink{background:rgba(255,92,138,.18);color:var(--pink)}
+.tag.orange{background:rgba(255,140,66,.18);color:var(--orange)}
+.sp-text h2{margin-bottom:.9rem}
+.sp-list{margin-top:1.6rem;display:flex;flex-direction:column;gap:.75rem}
+.sp-item{display:flex;align-items:flex-start;gap:.75rem;font-size:.92rem;color:var(--muted);line-height:1.55}
+.sp-item::before{content:'✦';color:var(--blue2);font-size:.7rem;margin-top:.2rem;flex-shrink:0}
+.sp-phones{display:flex;gap:1rem;justify-content:center;align-items:flex-end}
+.sp-phones img{border-radius:28px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.sp1{width:195px}.sp2{width:195px;margin-bottom:2.5rem}
 
-    .hero-text {
-      max-width: 560px;
-    }
+/* ─── REVIEWS ─── */
+#reviews{background:var(--surface)}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.3rem;margin-top:3rem}
+.rev{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.7rem}
+.stars{color:#FBBF24;font-size:.9rem;margin-bottom:.85rem}
+.rev q{font-size:.9rem;color:var(--muted);line-height:1.7;font-style:italic}
+.auth{display:flex;align-items:center;gap:.75rem;margin-top:1.2rem}
+.av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;color:#fff;flex-shrink:0}
+.auth span{font-size:.86rem;color:var(--text);font-weight:600}
 
-    .badge {
-      display: inline-block;
-      padding: 8px 16px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      margin-bottom: 20px;
-      font-size: 14px;
-      color: #d1fae5;
-    }
+/* ─── CTA ─── */
+#cta{background:radial-gradient(ellipse 70% 90% at 50% 50%,rgba(58,91,240,.2),var(--bg) 70%);text-align:center}
+#cta h2{margin-bottom:.9rem}
+#cta p{color:var(--muted);font-size:1rem;margin-bottom:2.2rem}
 
-    h1 {
-      font-size: 64px;
-      line-height: 1.1;
-      margin-bottom: 24px;
-    }
+/* ─── FOOTER ─── */
+footer{background:var(--surface);border-top:1px solid var(--border);text-align:center;padding:1.8rem 1rem;font-size:.83rem;color:var(--muted)}
+footer a{color:var(--blue2);text-decoration:none}
 
-    p {
-      font-size: 18px;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.82);
-      margin-bottom: 32px;
-    }
+/* ─── REVEAL ─── */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.rv.on{opacity:1;transform:none}
 
-    .buttons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 14px 24px;
-      border-radius: 14px;
-      border: none;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s ease;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: white;
-      color: #0f172a;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.1);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.2);
-    }
-
-    .card {
-      width: 320px;
-      padding: 28px;
-      border-radius: 28px;
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
-    }
-
-    .card h3 {
-      font-size: 24px;
-      margin-bottom: 16px;
-    }
-
-    .feature {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 18px;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .feature span {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #34d399;
-      display: inline-block;
-    }
-
-    footer {
-      text-align: center;
-      padding: 24px;
-      color: rgba(255,255,255,0.6);
-      font-size: 14px;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 44px;
-      }
-
-      .hero {
-        padding-top: 40px;
-      }
-
-      header {
-        padding: 20px 6%;
-      }
-
-      nav {
-        display: none;
-      }
-    }
-  </style>
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .hero-inner,.sp-grid,.sp-grid.flip{grid-template-columns:1fr;text-align:center}
+  .sp-grid.flip{direction:ltr}
+  .hero-sub{margin:0 auto 2rem}
+  .dl-btn{margin:0 auto}
+  .hero-phones,.sp-phones{justify-content:center}
+  .sub{max-width:100%}
+  nav{padding:.9rem 1.2rem}
+}
+@media(max-width:520px){
+  .hp1,.hp2,.sp1,.sp2{width:155px}
+  .marquee-track img{width:120px}
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo">RelaxMind</div>
-    <nav>
-      <a href="#features">Features</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <div class="hero-text">
-      <div class="badge">Mindfulness • Focus • Better Sleep</div>
-      <h1>Find Calm in a Busy World.</h1>
-      <p>
-        RelaxMind helps you relax, meditate, focus, and sleep better with calming sounds, breathing exercises, and mindfulness sessions.
-      </p>
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <img src="Assets/app_icon.png" alt="RelaxMind"/>
+    <span class="logo-name">RelaxMind</span>
+  </a>
+  <a class="nav-dl" href="https://apps.apple.com/app/relaxmind" target="_blank" id="nav-dl">Download</a>
+</nav>
 
-      <div class="buttons">
-        <a class="btn btn-primary" href="#">Download App</a>
-        <a class="btn btn-secondary" href="mailto:support@relaxmind.me">Contact Support</a>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="pill">🧠 &nbsp;Available on iOS</div>
+      <h1>Calm your mind.<br/>Transform your <span class="grad">daily life.</span></h1>
+      <p class="hero-sub">RelaxMind is your personal mental wellness companion — guided audio sessions, science-backed breathing exercises, sleep soundscapes and mood insights, beautifully crafted for iPhone.</p>
+      <a class="dl-btn" href="https://apps.apple.com/app/relaxmind" target="_blank" id="hero-dl">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on the App Store
+      </a>
+    </div>
+    <div class="hero-phones">
+      <img class="hp1" src="Assets/app_screen_1.jpg" alt="RelaxMind dashboard"/>
+      <img class="hp2" src="Assets/app_screen_2.jpg" alt="RelaxMind daily practice"/>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div id="marquee">
+  <div class="marquee-track">
+    <img src="Assets/app_screen_1.jpg" alt=""/> <img src="Assets/app_screen_2.jpg" alt=""/>
+    <img src="Assets/app_screen_3.jpg" alt=""/> <img src="Assets/app_screen_4.jpg" alt=""/>
+    <img src="Assets/app_screen_5.jpg" alt=""/> <img src="Assets/app_screen_6.jpg" alt=""/>
+    <img src="Assets/app_screen_7.jpg" alt=""/> <img src="Assets/app_screen_8.jpg" alt=""/>
+    <img src="Assets/app_screen_9.jpg" alt=""/> <img src="Assets/app_screen_10.jpg" alt=""/>
+    <img src="Assets/app_screen_11.jpg" alt=""/> <img src="Assets/app_screen_12.jpg" alt=""/>
+    <img src="Assets/app_screen_13.jpg" alt=""/>
+    <!-- duplicate for seamless loop -->
+    <img src="Assets/app_screen_1.jpg" alt=""/> <img src="Assets/app_screen_2.jpg" alt=""/>
+    <img src="Assets/app_screen_3.jpg" alt=""/> <img src="Assets/app_screen_4.jpg" alt=""/>
+    <img src="Assets/app_screen_5.jpg" alt=""/> <img src="Assets/app_screen_6.jpg" alt=""/>
+    <img src="Assets/app_screen_7.jpg" alt=""/> <img src="Assets/app_screen_8.jpg" alt=""/>
+    <img src="Assets/app_screen_9.jpg" alt=""/> <img src="Assets/app_screen_10.jpg" alt=""/>
+    <img src="Assets/app_screen_11.jpg" alt=""/> <img src="Assets/app_screen_12.jpg" alt=""/>
+    <img src="Assets/app_screen_13.jpg" alt=""/>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <p class="eyebrow rv">Everything you need</p>
+    <h2 class="rv">Built for real mental wellness</h2>
+    <p class="sub rv">Every feature is purposefully crafted to help you reduce stress, sleep better and build lasting mindful habits — one session at a time.</p>
+    <div class="feat-grid">
+      <div class="fc rv"><div class="fi b">🎧</div><h3>Guided Audio Sessions</h3><p>Curated sessions for sleep, anxiety, focus and healing — filter by mood and start instantly.</p></div>
+      <div class="fc rv"><div class="fi t">🌬️</div><h3>Breathing Exercises</h3><p>Box Breathing, 4-7-8, Emergency Calm — clinically proven techniques with live animated guidance.</p></div>
+      <div class="fc rv"><div class="fi p">🏆</div><h3>Mastery Programs</h3><p>21-day Stress Mastery and 30-day Breath Mastery — structured daily plans that rewire your mind.</p></div>
+      <div class="fc rv"><div class="fi o">📊</div><h3>Mood Tracking</h3><p>Log your mood daily and visualise your emotional journey with a beautiful interactive graph.</p></div>
+      <div class="fc rv"><div class="fi v">🧘</div><h3>Grounding Exercises</h3><p>5-4-3-2-1 sensory grounding, body scan, progressive muscle relaxation — calm in minutes.</p></div>
+      <div class="fc rv"><div class="fi g">🌙</div><h3>Sleep Soundscapes</h3><p>Ambient forest, ocean, rain and fire sounds to help you drift into deep, restorative sleep.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPOTLIGHT 1: Audio Sessions -->
+<section class="spotlight">
+  <div class="container">
+    <div class="sp-grid">
+      <div class="sp-text rv">
+        <span class="tag blue">Guided Audio</span>
+        <h2>Your personal calm, on demand</h2>
+        <p class="sub">A rich library of guided audio sessions — from quick 85-second grounding breathwork to full sleep journeys. Categorised by Sleep, Anxiety, Focus and Healing.</p>
+        <div class="sp-list">
+          <div class="sp-item">Safe Moment Breathing — 85-second anxiety relief</div>
+          <div class="sp-item">Drift to Sleep — float into deep, peaceful rest</div>
+          <div class="sp-item">Calm Resonance — soothing instrumental ambient</div>
+          <div class="sp-item">Deep Work Soundscape — instrumental focus frequencies</div>
+        </div>
+      </div>
+      <div class="sp-phones rv">
+        <img class="sp1" src="Assets/app_screen_3.jpg" alt="Guided audio sessions"/>
+        <img class="sp2" src="Assets/app_screen_5.jpg" alt="Now playing audio"/>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="card">
-      <h3>Why RelaxMind?</h3>
-
-      <div class="feature">
-        <span></span>
-        Guided meditation sessions
+<!-- SPOTLIGHT 2: Breathing -->
+<section class="spotlight">
+  <div class="container">
+    <div class="sp-grid flip">
+      <div class="sp-text rv">
+        <span class="tag teal">Breathing</span>
+        <h2>Breathe your way to instant calm</h2>
+        <p class="sub">Choose your technique and follow the animated breathing guide. Multiple clinically-validated methods in one beautiful interface.</p>
+        <div class="sp-list">
+          <div class="sp-item">Emergency Calm — panic relief in under 60 seconds</div>
+          <div class="sp-item">Box Breathing — 4s inhale · 4s hold · 4s exhale · 4s hold</div>
+          <div class="sp-item">4-7-8 Breathing — nature's tranquilliser for deep sleep</div>
+          <div class="sp-item">Calm Breathing — simple stress relief, 4s in · 6s out</div>
+        </div>
       </div>
-
-      <div class="feature">
-        <span></span>
-        Deep focus ambient sounds
-      </div>
-
-      <div class="feature">
-        <span></span>
-        Breathing & relaxation exercises
-      </div>
-
-      <div class="feature">
-        <span></span>
-        Sleep & stress management
+      <div class="sp-phones rv">
+        <img class="sp1" src="Assets/app_screen_11.jpg" alt="Breathing technique selection"/>
+        <img class="sp2" src="Assets/app_screen_12.jpg" alt="Breathing animation"/>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer>
-    © 2026 RelaxMind • All Rights Reserved
-  </footer>
+<!-- SPOTLIGHT 3: Programs -->
+<section class="spotlight">
+  <div class="container">
+    <div class="sp-grid">
+      <div class="sp-text rv">
+        <span class="tag pink">Mastery Plans</span>
+        <h2>21 days to rewire your mind</h2>
+        <p class="sub">Follow structured daily programs that build lasting habits. Track your progress through milestones and see your calm percentage grow day by day.</p>
+        <div class="sp-list">
+          <div class="sp-item">Day 1 — The Foundation of Calm · Box Breathing</div>
+          <div class="sp-item">Day 2 — Anchoring in Reality · 5-4-3-2-1 Grounding</div>
+          <div class="sp-item">Day 3 — Physical Release · Progressive Muscle Relaxation</div>
+          <div class="sp-item">Day 4 — Deep Relaxation · 4-7-8 Breathing · +4% Calm</div>
+        </div>
+      </div>
+      <div class="sp-phones rv">
+        <img class="sp1" src="Assets/app_screen_6.jpg" alt="21-day stress mastery plan"/>
+        <img class="sp2" src="Assets/app_screen_9.jpg" alt="Breathing exercise detail"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPOTLIGHT 4: Mood & Grounding -->
+<section class="spotlight">
+  <div class="container">
+    <div class="sp-grid flip">
+      <div class="sp-text rv">
+        <span class="tag orange">Mood & Grounding</span>
+        <h2>Understand yourself. Ground yourself.</h2>
+        <p class="sub">Log how you feel each day and see your patterns in a beautiful mood graph. When anxiety strikes, instant grounding exercises bring you back to the present.</p>
+        <div class="sp-list">
+          <div class="sp-item">Daily mood log with emoji ratings</div>
+          <div class="sp-item">Interactive mood graph — track trends over time</div>
+          <div class="sp-item">5-4-3-2-1 sensory grounding — see, hear, smell, touch, taste</div>
+          <div class="sp-item">Body scan & muscle relaxation for acute stress</div>
+        </div>
+      </div>
+      <div class="sp-phones rv">
+        <img class="sp1" src="Assets/app_screen_7.jpg" alt="Mood history"/>
+        <img class="sp2" src="Assets/app_screen_13.jpg" alt="Grounding exercise"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="container">
+    <p class="eyebrow rv">Reviews</p>
+    <h2 class="rv">People are finding their calm</h2>
+    <div class="rev-grid">
+      <div class="rev rv">
+        <div class="stars">★★★★★</div>
+        <q>The breathing exercises alone are worth it. I feel a real difference in my anxiety within minutes. Nothing else has worked this consistently for me.</q>
+        <div class="auth"><div class="av" style="background:linear-gradient(135deg,#3A5BF0,#7B5EA7)">S</div><span>Sarah M.</span></div>
+      </div>
+      <div class="rev rv">
+        <div class="stars">★★★★★</div>
+        <q>The 21-day Stress Mastery program genuinely changed how I respond to stress. The daily sessions are short but incredibly effective.</q>
+        <div class="auth"><div class="av" style="background:linear-gradient(135deg,#00C9A7,#3A5BF0)">J</div><span>James K.</span></div>
+      </div>
+      <div class="rev rv">
+        <div class="stars">★★★★★</div>
+        <q>I love that I can track my mood over time and see the improvement. The audio sessions are beautiful — Drift to Sleep is a game changer.</q>
+        <div class="auth"><div class="av" style="background:linear-gradient(135deg,#FF5C8A,#7B5EA7)">A</div><span>Aisha R.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container">
+    <p class="eyebrow rv" style="text-align:center">Get Started</p>
+    <h2 class="rv" style="text-align:center">Your calm is one tap away</h2>
+    <p class="rv">Available on iPhone and iPad. Start your mindfulness journey today.</p>
+    <div class="rv" style="display:flex;justify-content:center">
+      <a class="dl-btn" href="https://apps.apple.com/app/relaxmind" target="_blank" id="cta-dl">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on the App Store
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 RelaxMind &nbsp;·&nbsp; <a href="mailto:hello@relaxmind.me">Contact</a> &nbsp;·&nbsp; <a href="#">Privacy Policy</a></p>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}});
+},{threshold:0.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
 </body>
 </html>
