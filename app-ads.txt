@@ -1,0 +1,2 @@
+# app-ads.txt for relaxmind.me
+google.com, pub-3851293395463764, DIRECT, f08c47fec0942fa0
